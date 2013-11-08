@@ -13,6 +13,7 @@ exports.index = function(Todo) {
   };
 };
 
+
 exports.addTodo = function(Todo) {
   return function(req, res) {
     var todo = new Todo(req.body);
@@ -35,7 +36,6 @@ exports.get = function(Todo) {
 };
 
 exports.update = function(Todo) {
-  console.log("update:");
   return function(req, res) {
     Todo.findOne({ _id : req.params.id }, function(error, todo) {
       if (error || !todo) {

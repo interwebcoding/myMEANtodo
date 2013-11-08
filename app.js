@@ -4,6 +4,7 @@
 
 var express = require('express')
   , routes = require('./routes')
+  , edit = require('./routes/edit')
   , user = require('./routes/user')
   , http = require('http')
   , path = require('path');
@@ -33,11 +34,10 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index(Todo));
+app.get('/edit/create', edit.create(Todo));
 app.get('/users', user.list);
 app.get('/todos.json', routes.get(Todo));
-
 app.put('/todo/:id.json', routes.update(Todo));
-
 app.post('/todo.json', routes.addTodo(Todo));
 
 http.createServer(app).listen(app.get('port'), function(){

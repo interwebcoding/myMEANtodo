@@ -21,6 +21,12 @@ function TodoListController($scope, $http, $timeout) {
     });
   };
 
+  $scope.create = function() {
+    $http.get('/edit/create', $scope.create).success(function(data) {
+      $scope.todo = data.todos;        
+    });
+  }
+
   $scope.updateList = function() {
     $http.get('/todos.json').success(function(data) {
       $scope.todos = data.todos;
@@ -30,6 +36,7 @@ function TodoListController($scope, $http, $timeout) {
       $scope.updateList();
     }, 5 * 60 * 1000); // update every 30 minutes;
   };
+
 
   $timeout(function() {
     $scope.updateList();
@@ -48,3 +55,4 @@ function TodoListController($scope, $http, $timeout) {
     });
   };
 }
+
